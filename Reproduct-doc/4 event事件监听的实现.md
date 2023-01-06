@@ -1,38 +1,6 @@
-具体参考[event事件监听的实现过程](https://little-grouse-686.notion.site/event-2c33d26396944303ae79f6757ec3f588)
-
 # 00 准备创世块的配置信息
 
-使用`mkdir`指令新建名为`EventListening`的文件夹。在其中，准备放入`genesis.json`文件。
-
-**！不明晰点！原手册中未给出创始块的配置信息。**
-
-解决方法：在研究了启动代码之后，笔者认为使用上一个实验的创始块信息是可行的，如下：
-
-```json
-{
-    "config": {
-        "chainId": 91036,
-        "homesteadBlock": 0,
-        "eip150Block": 0,
-        "eip155Block": 0,
-        "eip158Block": 0,
-        "byzantiumBlock": 0,
-        "constantinopleBlock": 0,
-        "petersburgBlock": 0
-    },
-    "alloc": {},
-    "coinbase": "0x0000000000000000000000000000000000000000",
-    "difficulty": "0x20000",
-    "extraData": "",
-    "gasLimit": "0xffffffff",
-    "nonce": "0x0000000000000042",
-    "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "timestamp": "0x00"
-}
-```
-
-上述信息被存储于`EventListening/genesis.json`文件中。
+使用`mkdir`指令新建名为`EventListening`的文件夹。在其中，准备放入`genesis.json`文件。存储于`EventListening/genesis.json`文件中。
 
 # 01 初始化并启动
 
@@ -60,38 +28,7 @@ for (i = 0; i < 4; i++) { personal.unlockAccount(eth.accounts[i],"123456",15000)
 eth.getBalance(eth.accounts[0])
 ```
 
-在笔者的实验中，四个账户的地址如下：
-
-```
-0xdfc9a16294fb9bf434c4d3b0d94e09b456df8328
-0x61607dbe05905df8ebeeb6b471932477c9e29a5a
-0x0ebaaeca117b8843460fd3c8627dcebc4e62385d
-0x9a7304d35593740d33596696cef86b0e6481cd54
-```
-
-为它们在创世块中增加余额：
-
-```json
-// genesis.json
-{
-    // ...
-    "alloc": {
-        "0xdfc9a16294fb9bf434c4d3b0d94e09b456df8328": {
-            "balance": "50000000000000000000000000000000000000000"
-        },
-        "0x61607dbe05905df8ebeeb6b471932477c9e29a5a": {
-            "balance": "50000000000000000000000000000000000000000"
-        },
-        "0x0ebaaeca117b8843460fd3c8627dcebc4e62385d": {
-            "balance": "50000000000000000000000000000000000000000"
-        },
-        "0x9a7304d35593740d33596696cef86b0e6481cd54": {
-            "balance": "50000000000000000000000000000000000000000"
-        }
-    },
-    // ...
-}
-```
+为四个账户在创世块中增加余额：
 
 随后，再次启动区块链（使用01中的命令即可）。在控制台中，输入以下命令检查用户的余额：
 
@@ -102,27 +39,9 @@ eth.getBalance(eth.accounts[2])
 eth.getBalance(eth.accounts[3])
 ```
 
-
-
 # 03 补全完整合约
 
 根据原复现手册中的描述，需要在合约中新增以下代码：
-
-```solidity
-//返回车辆id
-event Myevent(
-	string res
-);
-
-//当车辆状态改变后触发事件，返回车辆id
-function setVehicleStatus(string memory uuid) public {
-    assert(vehicles[uuid].status == 0);
-    emit Myevent(uuid);
-    vehicles[uuid].status = 1;
-}
-```
-
-显然，上述内容并非完整的合约，而是某个合约的一部分。鉴于原代码仓库中并未给出关于该合约的信息，笔者根据上述增添的代码，经过猜想推断，编写了如下的合约代码：
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -149,9 +68,7 @@ contract TestContract {
 
 # 04将上述合约部署到geth创建的私有链上
 
-接下来，我们需要部署上述合约。《6 多节点树状区块链的部署》中，有更详细的部署合约的过程。
-
-
+接下来，部署上述合约。《6 多节点树状区块链的部署》中，有更详细的部署合约的过程。
 
 首先，访问[Remix IDE](https://remix.ethereum.org)，在`File Explorer`处，新建`TestContract.sol`文件，将上述合约粘贴入该文件后，按下`Ctrl+S`编译，一个叫做`Contract.json`的文件将出现在`File Explorer`中。在其中翻找，会获得两个我们关心的字段：
 
@@ -233,7 +150,3 @@ contract TestContract {
   ```
 
   无报错，确认已经将合约部署到链上了。
-  
-# 05 测试
-
-  遗憾的是，笔者暂且未找到改变车辆状态的方法，故暂时无法看到效果。该部分可能在未来补充完整。

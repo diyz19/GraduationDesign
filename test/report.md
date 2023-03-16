@@ -26,7 +26,7 @@ w11_1和w12_1添加父节点：复制w1的enode,替换w11_1_addPeer.js和w12_1_a
 admin.nodeInfo.enode
 ```
 
-在`w11_addPeer.js`和`w12_addPeer.js`中
+在`w11_1_addPeer.js`和`w12_1_addPeer.js`中
 
 ```js
 admin.addPeer
@@ -35,7 +35,7 @@ admin.addPeer
 然后启动节点2：
 
 ```bash
-geth-tree --identity "MyEth" --rpc --rpcport "8542" --rpccorsdomain "*" --datadir gethdata --port "30302" --nodiscover --rpcapi "eth,net,personal,web3,miner" --networkid "w2" --allow-insecure-unlock --dev.period 1 --preload "../w2_addPeer.js" console
+geth-tree --identity "MyEth" --rpc --rpcport "8542" --rpccorsdomain "*" --datadir gethdata --port "30302" --nodiscover --rpcapi "eth,net,personal,web3,miner" --networkid "w11" --allow-insecure-unlock --dev.period 1 --preload "../w11_1_addPeer.js" console
 ```
 
 配置节点3类似。
@@ -50,5 +50,5 @@ sh w12_init.sh
 
 发现报错
 ```
-Fatal: Failed to start the JavaScript console: ../w11_addPeer.js: 
+Fatal: Failed to start the JavaScript console: ../w11_1_addPeer.js: 
 ```

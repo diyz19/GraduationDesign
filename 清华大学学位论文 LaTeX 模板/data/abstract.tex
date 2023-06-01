@@ -1,0 +1,30 @@
+% !TeX root = ../thuthesis-example.tex
+
+% 中英文摘要和关键字
+
+\begin{abstract}
+随着科技的进步，汽车行业的快速发展和广泛应用，车辆之间的交互将变得必不可少，为了创建一个更加安全高效的交通环境，现提出把区块链技术应用于车联网当中，区块链的去中心化、独立性等特点使得在出租车调度系统中应用区块链技术能够消除中介，允许乘客与司机的直接交流与交易，同时由于区块链平台数据的透明性，能够为双方提供更为可信的验证，降低了信任成本。在网络出租车服务中使用区块链有助于参与的所有利益相关方关系更加紧密。
+
+然而传统的区块链是单链结构，在处理大量交易时，容易链条过长，从而消耗大量时间和能量，进而执行效率低下。为解决该问题，决定在出租车调度系统中应用“树状区块链”，树状区块链将区块分为了三类，创世区块，分支区块和叶区块。其根据地理位置的Geohash编码划分子链，形成分支区块管理其下子链，不同子链管理不同区域的这样一种树状字典树结构。
+
+本文首先是阅读了树状区块链的部分实现源码，对于一些源码核心功能函数给出了注释说明，之后，基于现有项目结构完成了对树状区块链应用于出租车调度系统的复现工作，并验证多子链并行运行的负载性能。此外，本文还验证了树状区块链的跨子链资产转移功能的正确性，并测试了其性能。在以上工作的基础之上，本文尝试对现有的出租车调度系统进行跨链交易的改进。现有的出租车调度系统仅支持一个子链内部的交易，但在实际应用场景中，乘客与车辆分处不同区域（不同子链）的概率非常大，针对这样的现实情况，本文尝试对现有的出租车调度系统进行改进使其支持跨链的交易操作，并最终给出了一个简易的能够实现跨链交易的调度过程，设计实验验证了实现的正确性。
+
+  % 关键词用“英文逗号”分隔，输出时会自动处理为正确的分隔符
+  \thusetup{
+    keywords = {关键词 1, 关键词 2, 关键词 3, 关键词 4, 关键词 5},
+  }
+\end{abstract}
+
+\begin{abstract*}
+    With the development and popularization of intelligent vehicles, the interaction between vehicles will become indispensable. In order to create a safer and more efficient traffic environment, this paper proposes the application of blockchain technology in the Internet of Vehicles. The decentralization, independence, and anonymity of blockchain make it possible to eliminate intermediaries and allow direct communication and transactions between passengers and drivers in the taxi dispatch system. At the same time, due to the transparency of blockchain platform data, it can provide more credible verification for both parties, reducing the cost of trust. Using blockchain in networked taxi services can help all stakeholders to have closer relationships.
+    
+    However, traditional blockchains are single-chain structured and when dealing with a large volume of transactions, the chain can become too long, consuming a considerable amount of time and energy, resulting in low execution efficiency. To address this problem, it was decided to apply the "tree-structured blockchain" in the taxi dispatch system. The tree-structured blockchain divides nodes into three types: genesis nodes, branch nodes, and leaf nodes. Subchains are divided based on the GeoHash encoding of geographic locations, with branch nodes managing their subchains, forming a tree-structured trie.
+    
+    This paper first reads the source code implementation of the tree-structured blockchain and provides explanatory comments on the functionality of the source code. Then, based on the existing project structure, the replication work of applying the tree-structured blockchain to the taxi dispatch system is completed, and the load performance of parallel operation of multiple subchains is verified. In addition, this paper verifies the correctness of the cross-subchain asset transfer function of the tree-structured blockchain and tests its performance. Based on the above work, this paper attempts to improve the cross-chain transaction of the existing taxi dispatch system. The existing taxi dispatch system only supports transactions within the same subchain, but in practical scenarios, the probability of passengers and vehicles being in different areas (different subchains) is very high. To address this issue, this paper attempts to improve the existing taxi dispatch system to support cross-chain transaction operations and ultimately presents a simple scheduling process that can achieve cross-chain transactions, and the design experiment verifies the correctness of the implementation.
+
+
+  % Use comma as separator when inputting
+  \thusetup{
+    keywords* = {keyword 1, keyword 2, keyword 3, keyword 4, keyword 5},
+  }
+\end{abstract*}

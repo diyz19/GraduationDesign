@@ -1,1 +1,0 @@
-var MAP_NAME = "wx4e"; for (var i = 0; i < 12; i++) { personal.unlockAccount(eth.accounts[i], "123", 30000); }

@@ -1,1 +1,0 @@
-vehicles = ["0x95fcbbba05858b53b829361a052450179d7a62ca"]

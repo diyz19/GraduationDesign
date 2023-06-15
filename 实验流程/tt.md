@@ -1,8 +1,0 @@
-新开一个分支节点终端
-
-维护一个合约函数，如果子链筛选为空，则发送一个事件，参数传递，passengerID与region，管理员终端接受该事件后，执行web3.eth.getAccountByRegion，然后，getVehicleByRegion，返回发送事件并由对应的passengerID乘客接受对应的VehicleID，同时对应的VehicleID车辆也接受
-
-此时，乘客向管理员发送txtype：1的transfer，并由事件到管理员接受，车辆发送txtype：2的transfer，并由管理员接受
-
-还是乘客发送send转账，车辆发送result结果（管理员不能打包）
-

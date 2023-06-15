@@ -1,8 +1,0 @@
-{
-    "defaultContext": {
-        "account": "(local)",
-        "database": "master",
-        "schema": "dbo"
-    },
-    "scripts": []
-}
